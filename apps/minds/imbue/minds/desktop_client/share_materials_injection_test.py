@@ -4,7 +4,6 @@ import shutil
 import subprocess
 import threading
 import tomllib
-from collections.abc import Callable
 from collections.abc import Mapping
 from collections.abc import Sequence
 from datetime import datetime
@@ -67,10 +66,7 @@ class _ExecutingMngrCaller(MngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
-        if on_process_claimed is not None:
-            on_process_claimed()
         completed = subprocess.run(
             ["bash", "-c", argv[2]],
             cwd=self.work_dir,

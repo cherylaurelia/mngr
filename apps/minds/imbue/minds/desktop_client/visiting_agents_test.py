@@ -1,5 +1,4 @@
 import json
-from collections.abc import Callable
 from collections.abc import Mapping
 from collections.abc import Sequence
 from pathlib import Path
@@ -41,11 +40,8 @@ class AgentAccessCaller(RecordingMngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
-        super().call(
-            argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd, on_process_claimed=on_process_claimed
-        )
+        super().call(argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd)
         return self.answer
 
 

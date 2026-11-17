@@ -992,10 +992,7 @@ class _RunStartsWhileTheCommandTimesOutCaller(MngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
-        if on_process_claimed is not None:
-            on_process_claimed()
         self.store.set_activity(self.agent_id, UpdateActivity.RUNNING)
         return MngrCallResult(returncode=-1, is_timed_out=True)
 

@@ -197,22 +197,6 @@ mngr imbue_cloud auth is-verified [OPTIONS]
 | `--account` | text | Account email (defaults to the active account) | None |
 | `--connector-url` | text | Override connector URL | None |
 
-## mngr imbue_cloud auth browser-session-code
-
-**Usage:**
-
-```text
-mngr imbue_cloud auth browser-session-code [OPTIONS]
-```
-**Options:**
-
-## Other Options
-
-| Name | Type | Description | Default |
-| ---- | ---- | ----------- | ------- |
-| `--account` | text | Account email (defaults to the active account) | None |
-| `--connector-url` | text | Override connector URL | None |
-
 ## mngr imbue_cloud account
 
 **Usage:**
@@ -905,7 +889,7 @@ mngr imbue_cloud shares push-grants [OPTIONS] HOST_ID
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `--document-file` | file | A JSON file holding the workspace's parsed grants document: {"workspace": {"users": [], "emails": [], "email_domains": []}, "services": {"<app>": {...}}}, optionally with "workspace_name" and "targets" ({"<app>": {"label", "display_name"}}, the origin label and display name of every grantable target), from which a recipient's listing renders links and names. | None |
+| `--document-file` | file | A JSON file holding the workspace's parsed grants document: {"workspace": {"users": [], "emails": [], "email_domains": []}, "services": {"<app>": {...}}}. | None |
 | `--account` | text | Account email (defaults to the active account) | None |
 | `--connector-url` | text | Override connector URL | None |
 
@@ -955,71 +939,6 @@ mngr imbue_cloud shares mobile-access-link [OPTIONS] HOST_ID
 
 ```text
 mngr imbue_cloud shares invitation-outcomes [OPTIONS] HOST_ID
-```
-**Options:**
-
-## Other Options
-
-| Name | Type | Description | Default |
-| ---- | ---- | ----------- | ------- |
-| `--account` | text | Account email (defaults to the active account) | None |
-| `--connector-url` | text | Override connector URL | None |
-
-## mngr imbue_cloud shares shared-with-me
-
-**Usage:**
-
-```text
-mngr imbue_cloud shares shared-with-me [OPTIONS]
-```
-**Options:**
-
-## Other Options
-
-| Name | Type | Description | Default |
-| ---- | ---- | ----------- | ------- |
-| `--account` | text | Account email (defaults to the active account) | None |
-| `--connector-url` | text | Override connector URL | None |
-
-## mngr imbue_cloud shares shared-with-me-matches
-
-**Usage:**
-
-```text
-mngr imbue_cloud shares shared-with-me-matches [OPTIONS]
-```
-**Options:**
-
-## Other Options
-
-| Name | Type | Description | Default |
-| ---- | ---- | ----------- | ------- |
-| `--account` | text | Account email (defaults to the active account) | None |
-| `--connector-url` | text | Override connector URL | None |
-
-## mngr imbue_cloud shares respond
-
-**Usage:**
-
-```text
-mngr imbue_cloud shares respond [OPTIONS] HOST_ID
-```
-**Options:**
-
-## Other Options
-
-| Name | Type | Description | Default |
-| ---- | ---- | ----------- | ------- |
-| `--response` | choice (`accepted` &#x7C; `declined` &#x7C; `reported`) | accepted, declined, or reported (a report is a strike against the owner and cannot be withdrawn) | None |
-| `--account` | text | Account email (defaults to the active account) | None |
-| `--connector-url` | text | Override connector URL | None |
-
-## mngr imbue_cloud shares clear-response
-
-**Usage:**
-
-```text
-mngr imbue_cloud shares clear-response [OPTIONS] HOST_ID
 ```
 **Options:**
 

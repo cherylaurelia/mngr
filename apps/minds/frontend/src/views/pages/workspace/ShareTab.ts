@@ -49,7 +49,6 @@ import type {
 import type { VisitingAgentEntry } from "../../../models/workspaceOptions";
 import { GRANT_ADD_KINDS, toGrantAddKind } from "../../../models/sharePanel";
 import { formatRelativeAgo } from "../../../models/backups";
-import { monogramLetters } from "../../../models/monogram";
 import { navEntryClass, splitPane } from "../../components/SplitPane";
 import {
   renderSwitch,
@@ -1530,7 +1529,7 @@ function renderGrantLead(share: SharePanelModel, grant: Grant): m.Children {
   return m(
     "span",
     { class: ROW_LEAD_CLASS + " bg-fill-active text-secondary type-helper" },
-    monogramLetters(grantText(share, grant).primary),
+    monogram(grantText(share, grant).primary),
   );
 }
 
@@ -1548,6 +1547,14 @@ function grantText(
   const name = record?.display_name ?? "";
   if (name !== "") return { primary: name, secondary: email };
   return { primary: email ?? grantee.userId, secondary: null };
+}
+
+function monogram(text: string): string {
+  const words = text.split(/\s+/).filter((word) => word !== "");
+  if (words.length === 0) return "";
+  const initials =
+    words.length === 1 ? words[0].slice(0, 1) : words[0][0] + words[1][0];
+  return initials.toUpperCase();
 }
 
 function isJustAdded(share: SharePanelModel, grant: Grant): boolean {
@@ -1971,7 +1978,7 @@ function renderVisitingAgentRow(
         {
           class: `${ROW_LEAD_CLASS} bg-fill-subtle type-helper font-semibold text-secondary`,
         },
-        monogramLetters(agent.name),
+        monogram(agent.name),
       ),
       m(
         "span",

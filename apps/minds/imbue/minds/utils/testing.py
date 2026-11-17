@@ -49,10 +49,7 @@ class RecordingMngrCaller(MngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
-        if on_process_claimed is not None:
-            on_process_claimed()
         self._calls.append(list(argv))
         self._recorded_calls.append(
             RecordedMngrCall(
@@ -100,11 +97,8 @@ class HookedMngrCaller(RecordingMngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
-        result = super().call(
-            argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd, on_process_claimed=on_process_claimed
-        )
+        result = super().call(argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd)
         if self._on_call is not None:
             self._on_call(argv)
         return result
@@ -121,10 +115,7 @@ class ScriptedMngrCaller(RecordingMngrCaller):
         timeout: float | None = None,
         env_overrides: Mapping[str, str] | None = None,
         cwd: Path | None = None,
-        on_process_claimed: Callable[[], None] | None = None,
     ) -> MngrCallResult:
         index = min(len(self.calls), len(self.results) - 1)
-        super().call(
-            argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd, on_process_claimed=on_process_claimed
-        )
+        super().call(argv, timeout=timeout, env_overrides=env_overrides, cwd=cwd)
         return self.results[index]

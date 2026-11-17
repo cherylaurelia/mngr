@@ -5,7 +5,6 @@
 // via route params or a staged pending-launch from the open_help flow.
 
 import m from "mithril";
-import { isSharedEntry } from "../../models/sharedWithMe";
 import {
   HelpModel,
   isHelpLaunchStagedFor,
@@ -426,13 +425,6 @@ function HelpPageComponent(): m.Component {
         if (!openArrivedReport()) getAppContext().shell.closeAppOverlay();
       },
       redraw: () => m.redraw(),
-      isWorkspaceOwned: (workspaceAgentId) => {
-        const entry =
-          getAppContext().shell.stores.workspaces.entryByAnyId(
-            workspaceAgentId,
-          );
-        return entry === null || !isSharedEntry(entry);
-      },
     });
   };
 

@@ -39,12 +39,6 @@ class GitRefNotFoundError(GitCloneError):
     ...
 
 
-class WallpaperFetchError(MindError):
-    """Raised when a workspace's wallpaper could not be read through the forward (the cache is left as it was)."""
-
-    ...
-
-
 class GitOperationError(MindError):
     """Raised when a git operation (other than clone) fails."""
 
@@ -517,7 +511,3 @@ class WorkspaceMessageTypeError(MindError, ValueError):
     """
 
     ...
-
-
-class SharedLinkRowMissingError(MindError):
-    """A share key names no row of the account: neither a listed share nor a pasted link (one just recorded included)."""
