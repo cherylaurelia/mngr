@@ -7,7 +7,7 @@
 #
 # What this script does:
 #   1. Installs uv (https://docs.astral.sh/uv/) if not already present
-#   2. Installs mngr via: uv tool install imbue-mngr
+#   2. Installs mngr via: uv tool install imbue-mngr --python '>=3.12,<3.15'
 #   3. Runs: mngr dependencies --install interactive --scope core
 #           (interactively install system deps; only warns if a *core* dep is missing)
 #   4. Runs: mngr extras -i        (optional: plugins, shell completion,
@@ -50,7 +50,11 @@ if uv tool list 2>/dev/null | grep -q '^imbue-mngr '; then
     uv tool upgrade imbue-mngr
 else
     info "Installing mngr..."
-    uv tool install imbue-mngr
+    # Keep the tool env off Python 3.15: google-re2 (via cel-python) has no 3.15
+    # wheel yet, so uv would build it from source and fail wherever 3.15 is the
+    # newest Python, e.g. Homebrew's python3. Drop the upper bound once
+    # https://github.com/google/re2/issues/647 ships 3.15 wheels.
+    uv tool install imbue-mngr --python '>=3.12,<3.15'
 fi
 
 if ! command -v mngr &>/dev/null; then

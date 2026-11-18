@@ -230,17 +230,17 @@ From the repo where you would like a Dockerfile created.
 ```bash
 curl -fsSL https://raw.githubusercontent.com/imbue-ai/mngr/main/scripts/install.sh | bash
 ```
-This installs [uv](https://docs.astral.sh/uv/) and mngr (`uv tool install imbue-mngr`), then interactively prompts about system dependencies, optional extras, and a default agent type for `mngr create`. You can [review the script](scripts/install.sh) before running it.
+This installs [uv](https://docs.astral.sh/uv/) and mngr (`uv tool install imbue-mngr --python '>=3.12,<3.15'`), then interactively prompts about system dependencies, optional extras, and a default agent type for `mngr create`. You can [review the script](scripts/install.sh) before running it.
 
 **Manual install** (requires [uv](https://docs.astral.sh/uv/) and core system deps: `git`, `tmux`, `jq`; optional: `ssh`, `rsync`, `unison`, `claude`):
 ```bash
-uv tool install imbue-mngr
+uv tool install imbue-mngr --python '>=3.12,<3.15'
 
 # most provider backends are plugins, e.g. docker:
-uv tool install imbue-mngr --with imbue-mngr-docker
+uv tool install imbue-mngr --python '>=3.12,<3.15' --with imbue-mngr-docker
 
 # or run without installing
-uvx --from imbue-mngr mngr
+uvx --python '>=3.12,<3.15' --from imbue-mngr mngr
 ```
 
 **Upgrade:**
