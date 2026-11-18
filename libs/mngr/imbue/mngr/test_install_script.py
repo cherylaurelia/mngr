@@ -159,7 +159,7 @@ def test_install_sh_installs_when_mngr_not_present(tmp_path: Path) -> None:
 
     assert result.returncode == 0, f"install.sh failed\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
     calls = log_file.read_text()
-    assert "uv tool install imbue-mngr" in calls
+    assert "uv tool install imbue-mngr --python 3.12" in calls
     assert "uv tool upgrade imbue-mngr" not in calls
     assert "mngr dependencies --install interactive --scope core" in calls
     assert "mngr extras -i" in calls
